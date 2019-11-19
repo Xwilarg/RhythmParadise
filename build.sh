@@ -5,3 +5,4 @@ conan remote add SFML https://api.bintray.com/conan/bincrafters/public-conan
 conan install .. --build=missing
 cmake ..
 cmake --build . --config RELEASE
+cp ../build/bin/RythmHero.exe ..

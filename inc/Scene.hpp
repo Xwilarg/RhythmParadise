@@ -9,6 +9,7 @@ namespace rythm
     public:
         void AddGameObject(std::unique_ptr<AGameObject> gameObject) noexcept;
         void InvokeEvent(const sf::Event &event) noexcept;
+        void Draw(sf::RenderWindow &window) const noexcept;
 
     private:
         std::vector<std::unique_ptr<AGameObject>> _gameObjects;

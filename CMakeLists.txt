@@ -17,5 +17,6 @@ add_executable(RythmHero
     src/AClickableGameObject.cpp
     src/InputField.cpp
     src/AGameObject.cpp
-    src/scenes.cpp)
+    src/scenes.cpp
+    src/ResourceManager.cpp)
 target_link_libraries(RythmHero ${CONAN_LIBS})

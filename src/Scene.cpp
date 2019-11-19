@@ -12,4 +12,10 @@ namespace rythm
         for (auto &go : _gameObjects)
             go->InvokeEvent(event);
     }
+
+    void Scene::Draw(sf::RenderWindow &window) const noexcept
+    {
+        for (auto &go : _gameObjects)
+            go->Draw(window);
+    }
 }
