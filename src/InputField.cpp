@@ -1,3 +1,4 @@
+#include <SFML/Window/Clipboard.hpp>
 #include "InputField.hpp"
 #include "ResourceLoader.hpp"
 
@@ -58,6 +59,17 @@ namespace rythm
                     _textStr = _textStr.substring(0, size - 1);
                     _contentText.setString(_textStr);
                 }
+            }
+            else if (event.type == sf::Event::KeyPressed && event.key.control && event.key.code == sf::Keyboard::V)
+            {
+                _textStr += sf::Clipboard::getString();
+                _textStr.replace("\n", "");
+                _contentText.setString(_textStr);
+            }
+            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+            {
+                _textStr = "";
+                _contentText.setString("");
             }
             else if (event.type == sf::Event::TextEntered && event.text.unicode != 8)
             {

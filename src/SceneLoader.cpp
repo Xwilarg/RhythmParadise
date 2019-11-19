@@ -26,8 +26,8 @@ namespace rythm
     Scene SceneLoader::CreateMenuScene() noexcept
     {
         Scene menu;
-        menu.AddGameObject(std::make_unique<InputField>(sf::Vector2f(10.f, 10.f), sf::Vector2f(300.f, 30.f), "Song path"));
-        menu.AddGameObject(std::make_unique<Button>(sf::Vector2f(320.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this)));
+        menu.AddGameObject(std::make_unique<InputField>(sf::Vector2f(10.f, 10.f), sf::Vector2f(1000.f, 30.f), "Song path"));
+        menu.AddGameObject(std::make_unique<Button>(sf::Vector2f(1020.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this)));
         return menu;
     }
 
