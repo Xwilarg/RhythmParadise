@@ -1,8 +1,8 @@
-#include "SceneManager.hpp"
+#include "SceneLoader.hpp"
 
 int main()
 {
-    rythm::SceneManager scene;
+    rythm::SceneLoader scene;
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Rythm Hero");
 
     while (window.isOpen())

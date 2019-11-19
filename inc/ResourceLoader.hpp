@@ -5,11 +5,11 @@
 
 namespace rythm
 {
-    class ResourceManager final
+    class ResourceLoader final
     {
     public:
-        ResourceManager() = delete;
-        ~ResourceManager() noexcept;
+        ResourceLoader() = delete;
+        ~ResourceLoader() noexcept;
 
         template <typename T>
         static const T& LoadFromFile(const std::string &path)

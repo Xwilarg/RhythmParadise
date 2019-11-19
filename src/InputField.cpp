@@ -1,11 +1,11 @@
 #include "InputField.hpp"
-#include "ResourceManager.hpp"
+#include "ResourceLoader.hpp"
 
 namespace rythm
 {
     InputField::InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept
-        : AClickableGameObject(position, size, sf::Color::White), _hintText(hintText, ResourceManager::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10),
-        _contentText("", ResourceManager::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10), _textStr(""), _isSelected(false)
+        : AClickableGameObject(position, size, sf::Color::White), _hintText(hintText, ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10),
+        _contentText("", ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10), _textStr(""), _isSelected(false)
     {
         _hintText.setFillColor(sf::Color(127, 127, 127));
         _hintText.setPosition(sf::Vector2f(position.x + 5.f, position.y));

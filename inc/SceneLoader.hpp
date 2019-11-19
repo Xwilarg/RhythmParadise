@@ -4,10 +4,10 @@
 
 namespace rythm
 {
-    class SceneManager final
+    class SceneLoader final
     {
     public:
-        SceneManager() noexcept;
+        SceneLoader() noexcept;
         void InvokeEvent(const sf::Event& event) noexcept;
         void Draw(sf::RenderWindow &window) const noexcept;
         void LoadGameScene();
