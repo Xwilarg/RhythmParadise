@@ -2,7 +2,7 @@
 
 namespace rythm
 {
-    void Scene::AddGameObject(std::unique_ptr<AGameObject> gameObject) noexcept
+    void Scene::AddGameObject(std::shared_ptr<AGameObject> gameObject) noexcept
     {
         _gameObjects.push_back(std::move(gameObject));
     }

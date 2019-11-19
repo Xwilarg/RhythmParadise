@@ -7,11 +7,11 @@ namespace rythm
     class Scene final
     {
     public:
-        void AddGameObject(std::unique_ptr<AGameObject> gameObject) noexcept;
+        void AddGameObject(std::shared_ptr<AGameObject> gameObject) noexcept;
         void InvokeEvent(const sf::Event &event) noexcept;
         void Draw(sf::RenderWindow &window) const noexcept;
 
     private:
-        std::vector<std::unique_ptr<AGameObject>> _gameObjects;
+        std::vector<std::shared_ptr<AGameObject>> _gameObjects;
     };
 }

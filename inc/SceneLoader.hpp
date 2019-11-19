@@ -1,6 +1,7 @@
 #pragma once
 
 # include "Scene.hpp"
+# include "InputField.hpp"
 
 namespace rythm
 {
@@ -18,5 +19,6 @@ namespace rythm
         Scene _menuScene;
         Scene _gameScene;
         std::reference_wrapper<Scene> _currentScene;
+        std::shared_ptr<InputField> _songPath;
     };
 }
