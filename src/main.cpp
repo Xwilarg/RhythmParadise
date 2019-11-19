@@ -1,8 +1,9 @@
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include "Scene.hpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "Rythm Hero");
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "Rythm Hero");
 
     while (window.isOpen())
     {

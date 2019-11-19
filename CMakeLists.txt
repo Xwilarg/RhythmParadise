@@ -3,5 +3,10 @@ project(RythmHero)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-add_executable(RythmHero src/main.cpp)
+
+include_directories(inc)
+add_executable(RythmHero
+    src/main.cpp
+    src/Scene.cpp
+    src/AClickableGameObject.cpp)
 target_link_libraries(RythmHero ${CONAN_LIBS})
