@@ -1,8 +1,8 @@
-#include <SFML/Graphics/RenderWindow.hpp>
-#include "Scene.hpp"
+#include "scenes.hpp"
 
 int main()
 {
+    rythm::Scene menuScene = rythm::CreateMenuScene();
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Rythm Hero");
 
     while (window.isOpen())

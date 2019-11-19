@@ -1,6 +1,5 @@
 #pragma once
 
-# include <SFML/Graphics/RectangleShape.hpp>
 # include <memory>
 # include "AGameObject.hpp"
 
@@ -9,11 +8,11 @@ namespace rythm
     class AClickableGameObject : public AGameObject
     {
     public:
-        virtual ~AClickableGameObject();
-        void CheckClick(sf::Vector2i mousePos);
+		AClickableGameObject(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color) noexcept;
+        virtual ~AClickableGameObject() noexcept = default;
         virtual void OnClick() = 0;
 
-    private:
-        sf::RectangleShape _shape;
+        // Inheriting of GameObject
+        void InvokeEvent(const sf::Event& event) noexcept override;
     };
 }
