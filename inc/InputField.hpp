@@ -14,11 +14,14 @@ namespace rythm
         void OnSelect() noexcept override;
         void OnUnselect() noexcept override;
 
-        // Inheriting of AClickableGameObject
+        // Inheriting of AGameObject
         void Draw(sf::RenderWindow &window) const noexcept override;
+        void InvokeEvent(const sf::Event& event) noexcept override;
 
     private:
         sf::Text _hintText;
-        std::string _text;
+        sf::Text _contentText;
+        sf::String _textStr;
+        bool _isSelected;
     };
 }
