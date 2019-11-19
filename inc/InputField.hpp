@@ -10,13 +10,14 @@ namespace rythm
     public:
         InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept;
 
-        // Inheriting of AClickableGameObject
-        void OnSelect() noexcept override;
-        void OnUnselect() noexcept override;
-
         // Inheriting of AGameObject
         void Draw(sf::RenderWindow &window) const noexcept override;
         void InvokeEvent(const sf::Event& event) noexcept override;
+
+    protected:
+        // Inheriting of AClickableGameObject
+        void OnSelect() noexcept override;
+        void OnUnselect() noexcept override;
 
     private:
         sf::Text _hintText;
