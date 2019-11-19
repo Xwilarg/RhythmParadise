@@ -26,4 +26,14 @@ namespace rythm
     {
         return _shape.getPosition();
     }
+
+    void AGameObject::SetBorderColor(const sf::Color& color) noexcept
+    {
+        _shape.setOutlineColor(color);
+    }
+
+    void AGameObject::SetBorderThickness(float value) noexcept
+    {
+        _shape.setOutlineThickness(value);
+    }
 }

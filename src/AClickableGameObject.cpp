@@ -3,7 +3,7 @@
 namespace rythm
 {
 	AClickableGameObject::AClickableGameObject(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color) noexcept
-		: AGameObject(position, size, color)
+		: AGameObject(position, size, color), _isSelected(false)
 	{ }
 
 	void AClickableGameObject::InvokeEvent(const sf::Event& event) noexcept
@@ -21,7 +21,16 @@ namespace rythm
 			if (mouseX > posX && mouseX < posX + sizeX
 			&& mouseY > posY && mouseY < posY + sizeY)
 			{
-				OnClick();
+				if (!_isSelected)
+				{
+					_isSelected = true;
+					OnSelect();
+				}
+			}
+			else if (_isSelected)
+			{
+				_isSelected = false;
+				OnUnselect();
 			}
 		}
 	}

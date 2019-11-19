@@ -12,6 +12,7 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            menuScene.InvokeEvent(event);
         }
         window.clear();
         menuScene.Draw(window);

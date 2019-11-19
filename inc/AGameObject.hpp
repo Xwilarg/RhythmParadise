@@ -17,6 +17,8 @@ namespace rythm
     protected:
         const sf::Vector2f& GetSize() const noexcept;
         const sf::Vector2f& GetPosition() const noexcept;
+        void SetBorderColor(const sf::Color& color) noexcept;
+        void SetBorderThickness(float value) noexcept;
 
     private:
         sf::RectangleShape _shape;

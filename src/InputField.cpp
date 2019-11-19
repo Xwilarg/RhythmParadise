@@ -8,10 +8,18 @@ namespace rythm
     {
         _hintText.setFillColor(sf::Color(127, 127, 127));
         _hintText.setPosition(sf::Vector2f(position.x + 5.f, position.y));
+        SetBorderThickness(2.f);
     }
 
-    void InputField::OnClick() noexcept
-    { }
+    void InputField::OnSelect() noexcept
+    {
+        SetBorderColor(sf::Color(60, 143, 252)); // Blue
+    }
+
+    void InputField::OnUnselect() noexcept
+    {
+        SetBorderColor(sf::Color::White);
+    }
 
     void InputField::Draw(sf::RenderWindow &window) const noexcept
     {
