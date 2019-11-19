@@ -17,6 +17,6 @@ namespace rythm
         Scene CreateGameScene() const noexcept;
         Scene _menuScene;
         Scene _gameScene;
-        Scene& _currentScene;
+        std::reference_wrapper<Scene> _currentScene;
     };
 }
