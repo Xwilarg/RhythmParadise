@@ -1,8 +1,8 @@
-#include "scenes.hpp"
+#include "SceneManager.hpp"
 
 int main()
 {
-    rythm::Scene menuScene = rythm::CreateMenuScene();
+    rythm::SceneManager scene;
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Rythm Hero");
 
     while (window.isOpen())
@@ -12,10 +12,10 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            menuScene.InvokeEvent(event);
+            scene.InvokeEvent(event);
         }
         window.clear();
-        menuScene.Draw(window);
+        scene.Draw(window);
         window.display();
     }
     return 0;

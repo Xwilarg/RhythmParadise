@@ -14,6 +14,12 @@ namespace rythm
         SetBorderThickness(2.f);
     }
 
+    void InputField::Clear() noexcept
+    {
+        _textStr.clear();
+        _contentText.setString(_textStr);
+    }
+
     void InputField::OnSelect() noexcept
     {
         SetBorderColor(sf::Color(60, 143, 252)); // Blue

@@ -13,11 +13,11 @@ endif()
 include_directories(inc)
 add_executable(RythmHero
     src/main.cpp
-    src/Scene.cpp
     src/AClickableGameObject.cpp
-    src/InputField.cpp
     src/AGameObject.cpp
-    src/scenes.cpp
+    src/Button.cpp
+    src/InputField.cpp
     src/ResourceManager.cpp
-    src/Button.cpp)
+    src/Scene.cpp
+    src/SceneManager)
 target_link_libraries(RythmHero ${CONAN_LIBS})

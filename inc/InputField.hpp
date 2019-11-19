@@ -9,6 +9,7 @@ namespace rythm
     {
     public:
         InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept;
+        void Clear() noexcept;
 
         // Inheriting of AGameObject
         void Draw(sf::RenderWindow &window) const noexcept override;
