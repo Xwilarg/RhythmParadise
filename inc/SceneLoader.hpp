@@ -14,11 +14,11 @@ namespace rythm
         void LoadGameScene();
 
     private:
+        std::shared_ptr<InputField> _songPath;
         Scene CreateMenuScene() noexcept;
         Scene CreateGameScene() const noexcept;
         Scene _menuScene;
         Scene _gameScene;
         std::reference_wrapper<Scene> _currentScene;
-        std::shared_ptr<InputField> _songPath;
     };
 }

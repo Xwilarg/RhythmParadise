@@ -17,6 +17,7 @@ add_executable(RythmHero
     src/AGameObject.cpp
     src/Button.cpp
     src/InputField.cpp
+    src/MusicLoader.cpp
     src/ResourceLoader.cpp
     src/Scene.cpp
     src/SceneLoader.cpp)

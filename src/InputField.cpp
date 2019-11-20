@@ -21,6 +21,11 @@ namespace rythm
         _contentText.setString(_textStr);
     }
 
+    const sf::String& InputField::GetContent() const noexcept
+    {
+        return _textStr;
+    }
+
     void InputField::OnSelect() noexcept
     {
         SetBorderColor(sf::Color(60, 143, 252)); // Blue
