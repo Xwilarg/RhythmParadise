@@ -11,7 +11,7 @@ namespace rythm
     {
     public:
         MusicLoader() = delete;
-        static void LoadMusic(std::string&& path) noexcept;
+        static void LoadMusic(const std::string& path) noexcept;
 
     private:
         static irrklang::ISoundEngine* _engine;

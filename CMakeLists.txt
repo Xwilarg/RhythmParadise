@@ -5,9 +5,9 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 if(MSVC)
-    SET(CMAKE_CXX_FLAGS "/W4 /EHsc")
+    SET(CMAKE_CXX_FLAGS "/W4 /EHsc /std:c++17")
 else()
-    SET(CMAKE_CXX_FLAGS "-Wall -Wextra")
+    SET(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++17")
 endif()
 
 include_directories(inc build/irrKlang/include)

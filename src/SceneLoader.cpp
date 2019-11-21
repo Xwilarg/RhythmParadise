@@ -1,6 +1,8 @@
+#include <filesystem>
 #include "SceneLoader.hpp"
 #include "InputField.hpp"
 #include "Button.hpp"
+#include "MusicLoader.hpp"
 
 namespace rythm
 {
@@ -20,19 +22,13 @@ namespace rythm
 
     void SceneLoader::LoadGameScene()
     {
-        auto pathStr = _songPath->GetContent();
-        size_t size = pathStr.getSize();
-        if (size < 5)
+        std::string pathStr = _songPath->GetContent().toAnsiString();
+        if (!std::filesystem::exists(pathStr))
         {
             _songPath->Clear();
             return;
         }
-        auto ending = pathStr.substring(size - 4, 4);
-        if (ending != ".ogg" && ending != ".wav")
-        {
-            _songPath->Clear();
-            return;
-        }
+        MusicLoader::LoadMusic(pathStr);
         _currentScene = _gameScene;
     }
 
