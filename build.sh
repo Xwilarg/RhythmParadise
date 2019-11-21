@@ -5,7 +5,7 @@ conan remote add SFML https://api.bintray.com/conan/bincrafters/public-conan
 set -e
 conan install .. --build=missing
 if [ ! -d "irrKlang" ]; then
-    if [ `uname -m` == 'x86_64' ]; then
+    if [ $(uname -m) = 'x86_64' ]; then
         url='http://www.ambiera.at/downloads/irrKlang-64bit-1.6.0.zip'
     else
         url='http://www.ambiera.at/downloads/irrKlang-32bit-1.6.0.zip'
@@ -15,16 +15,16 @@ if [ ! -d "irrKlang" ]; then
     rm irrKlang.zip
     mv irrKlang-* irrKlang
     cp irrKlang/lib/Winx64-visualStudio/irrKlang.lib .
-    if [ $OSTYPE == 'msys' ]; then
-        if [ `uname -m` == 'x86_64' ]; then
+    if [ $OSTYPE = 'msys' ]; then
+        if [ $(uname -m) = 'x86_64' ]; then
             cp irrKlang/bin/winx64-visualStudio/irrKlang.dll ..
         else
             cp irrKlang/bin/winx32-visualStudio/irrKlang.dll ..
         fi
-    elif [ $OSTYPE == 'osx' ]; then
+    elif [ $OSTYPE = 'osx' ]; then
         cp irrKlang/bin/macosx-gcc/irrKlang.dll ..
     else
-        if [ `uname -m` == 'x86_64' ]; then
+        if [ $(uname -m) = 'x86_64' ]; then
             cp irrKlang/bin/linux-gcc-64/irrKlang.dll ..
         else
             cp irrKlang/bin/linux-gcc-32/irrKlang.dll ..
