@@ -2,10 +2,11 @@
 
 namespace rythm
 {
-    bool MusicLoader::LoadMusic(const std::string& path) noexcept
+    void MusicLoader::LoadMusic(std::string&& path) noexcept
     {
-        return _music.openFromFile(path);
+        _path = std::move(path);
     }
 
-    sf::Music MusicLoader::_music;
+    irrklang::ISoundEngine* MusicLoader::_engine = irrklang::createIrrKlangDevice();
+    std::string MusicLoader::_path = "";
 }

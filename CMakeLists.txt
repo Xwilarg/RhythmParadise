@@ -10,8 +10,8 @@ else()
     SET(CMAKE_CXX_FLAGS "-Wall -Wextra")
 endif()
 
-include_directories(inc)
-add_executable(RythmHero
+include_directories(inc build/irrKlang/include)
+add_executable(${PROJECT_NAME}
     src/main.cpp
     src/AClickableGameObject.cpp
     src/AGameObject.cpp
@@ -21,4 +21,4 @@ add_executable(RythmHero
     src/ResourceLoader.cpp
     src/Scene.cpp
     src/SceneLoader.cpp)
-target_link_libraries(RythmHero ${CONAN_LIBS})
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})

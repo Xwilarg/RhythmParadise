@@ -1,6 +1,9 @@
 #pragma once
 
-# include <SFML/Audio/Music.hpp>
+#pragma comment(lib, "irrKlang.lib")
+
+# include <irrKlang.h>
+# include <string>
 
 namespace rythm
 {
@@ -8,9 +11,10 @@ namespace rythm
     {
     public:
         MusicLoader() = delete;
-        static bool LoadMusic(const std::string& path) noexcept;
+        static void LoadMusic(std::string&& path) noexcept;
 
     private:
-        static sf::Music _music;
+        static irrklang::ISoundEngine* _engine;
+        static std::string _path;
     };
 }
