@@ -1,6 +1,7 @@
 #pragma once
 
 # include <SFML/Graphics/Text.hpp>
+# include <functional>
 # include "AClickableGameObject.hpp"
 
 namespace rythm
@@ -19,6 +20,7 @@ namespace rythm
         void SetContent(const sf::String& value) noexcept;
         void SetInputType(InputType value) noexcept;
         void SetMaxLength(int value) noexcept;
+        void SetOnValueChangeCallback(std::function<void(const std::string&)>&& callback) noexcept;
 
         // Inheriting of AGameObject
         void Draw(sf::RenderWindow &window) const noexcept override;
@@ -36,5 +38,6 @@ namespace rythm
         bool _isSelected;
         InputType _inputType; // What kind of input the input field can receive
         int _maxLength; // Max number of character, -1 to disable
+        std::function<void(const std::string&)> _onValueChange;
     };
 }

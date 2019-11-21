@@ -7,7 +7,7 @@ namespace rythm
     InputField::InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept
         : AClickableGameObject(position, size, sf::Color::White), _hintText(hintText, ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10),
         _contentText("", ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10), _textStr(""), _isSelected(false),
-        _inputType(InputType::Any), _maxLength(-1)
+        _inputType(InputType::Any), _maxLength(-1), _onValueChange(nullptr)
     {
         _hintText.setFillColor(sf::Color(127, 127, 127));
         _hintText.setPosition(sf::Vector2f(position.x + 5.f, position.y));
@@ -41,6 +41,11 @@ namespace rythm
     void InputField::SetMaxLength(int value) noexcept
     {
         _maxLength = value;
+    }
+
+    void InputField::SetOnValueChangeCallback(std::function<void(const std::string&)>&& callback) noexcept
+    {
+        _onValueChange = callback;
     }
 
     void InputField::OnSelect() noexcept
@@ -104,6 +109,10 @@ namespace rythm
             {
                 _textStr = _textStr.substring(0, _maxLength);
                 _contentText.setString(_textStr);
+            }
+            if (_onValueChange != nullptr)
+            {
+                _onValueChange(_textStr.toAnsiString());
             }
         }
     }

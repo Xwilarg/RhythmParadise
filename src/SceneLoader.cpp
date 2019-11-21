@@ -33,6 +33,14 @@ namespace rythm
         }
     }
 
+    void SceneLoader::SetVolume(const std::string& volumeStr) const noexcept
+    {
+        float value = volumeStr == "" ? 0.f : std::stoi(volumeStr) / 100.f;
+        if (value < 0.f) value = 0.f;
+        else if (value > 1.f) value = 1.f;
+        MusicLoader::SetMusicVolume(value);
+    }
+
     Scene SceneLoader::CreateMenuScene() noexcept
     {
         Scene menu;
@@ -51,6 +59,7 @@ namespace rythm
         inputVolume->SetContent("25");
         inputVolume->SetInputType(InputField::InputType::Number);
         inputVolume->SetMaxLength(3);
+        inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetVolume, this, std::placeholders::_1));
         game.AddGameObject(std::move(inputVolume));
         return game;
     }

@@ -32,6 +32,11 @@ namespace rythm
         _music->setIsPaused(true);
     }
 
+    void MusicLoader::SetMusicVolume(float value) noexcept
+    {
+        _music->setVolume(value);
+    }
+
     irrklang::ISoundEngine* MusicLoader::_engine = irrklang::createIrrKlangDevice();
     irrklang::ISound* MusicLoader::_music = nullptr;
     std::string MusicLoader::_path = "";
