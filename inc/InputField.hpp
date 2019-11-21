@@ -8,9 +8,17 @@ namespace rythm
     class InputField final : public AClickableGameObject
     {
     public:
+        enum InputType
+        {
+            Any,
+            Number
+        };
         InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept;
         void Clear() noexcept;
         const sf::String& GetContent() const noexcept;
+        void SetContent(const sf::String& value) noexcept;
+        void SetInputType(InputType value) noexcept;
+        void SetMaxLength(int value) noexcept;
 
         // Inheriting of AGameObject
         void Draw(sf::RenderWindow &window) const noexcept override;
@@ -26,5 +34,7 @@ namespace rythm
         sf::Text _contentText;
         sf::String _textStr;
         bool _isSelected;
+        InputType _inputType; // What kind of input the input field can receive
+        int _maxLength; // Max number of character, -1 to disable
     };
 }

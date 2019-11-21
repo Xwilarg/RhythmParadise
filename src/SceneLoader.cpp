@@ -47,6 +47,11 @@ namespace rythm
         Scene game;
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic));
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic));
+        auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume");
+        inputVolume->SetContent("25");
+        inputVolume->SetInputType(InputField::InputType::Number);
+        inputVolume->SetMaxLength(3);
+        game.AddGameObject(std::move(inputVolume));
         return game;
     }
 }

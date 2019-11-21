@@ -13,8 +13,11 @@ namespace rythm
     bool MusicLoader::LoadMusic(const std::string& path) noexcept
     {
         _path = path;
-        _engine->setSoundVolume(.25f);
         _music = _engine->play2D(_path.c_str(), false, true, true); // Is looped?, start paused?, track song?
+        if (_music != nullptr)
+        {
+            _music->setVolume(.25f);
+        }
         return _music != nullptr;
     }
 

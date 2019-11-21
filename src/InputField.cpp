@@ -6,7 +6,8 @@ namespace rythm
 {
     InputField::InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept
         : AClickableGameObject(position, size, sf::Color::White), _hintText(hintText, ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10),
-        _contentText("", ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10), _textStr(""), _isSelected(false)
+        _contentText("", ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10), _textStr(""), _isSelected(false),
+        _inputType(InputType::Any), _maxLength(-1)
     {
         _hintText.setFillColor(sf::Color(127, 127, 127));
         _hintText.setPosition(sf::Vector2f(position.x + 5.f, position.y));
@@ -24,6 +25,22 @@ namespace rythm
     const sf::String& InputField::GetContent() const noexcept
     {
         return _textStr;
+    }
+
+    void InputField::SetContent(const sf::String& value) noexcept
+    {
+        _textStr = value;
+         _contentText.setString(_textStr);
+    }
+
+    void InputField::SetInputType(InputType value) noexcept
+    {
+        _inputType = value;
+    }
+
+    void InputField::SetMaxLength(int value) noexcept
+    {
+        _maxLength = value;
     }
 
     void InputField::OnSelect() noexcept
@@ -78,7 +95,14 @@ namespace rythm
             }
             else if (event.type == sf::Event::TextEntered && event.text.unicode != 8)
             {
+                if (_inputType == InputType::Any ||
+                (_inputType == InputType::Number && event.text.unicode >= '0' && event.text.unicode <= '9'))
                 _textStr += event.text.unicode;
+                _contentText.setString(_textStr);
+            }
+            if (_maxLength != -1 && _textStr.getSize() > _maxLength)
+            {
+                _textStr = _textStr.substring(0, _maxLength);
                 _contentText.setString(_textStr);
             }
         }
