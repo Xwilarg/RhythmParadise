@@ -23,13 +23,14 @@ namespace rythm
     void SceneLoader::LoadGameScene()
     {
         std::string pathStr = _songPath->GetContent().toAnsiString();
-        if (!std::filesystem::exists(pathStr))
+        if (!std::filesystem::exists(pathStr) || !MusicLoader::LoadMusic(pathStr))
         {
             _songPath->Clear();
-            return;
         }
-        MusicLoader::LoadMusic(pathStr);
-        _currentScene = _gameScene;
+        else
+        {
+            _currentScene = _gameScene;
+        }
     }
 
     Scene SceneLoader::CreateMenuScene() noexcept
@@ -44,6 +45,8 @@ namespace rythm
     Scene SceneLoader::CreateGameScene() const noexcept
     {
         Scene game;
+        game.AddGameObject(std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic));
+        game.AddGameObject(std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic));
         return game;
     }
 }

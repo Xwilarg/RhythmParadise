@@ -2,12 +2,34 @@
 
 namespace rythm
 {
-    void MusicLoader::LoadMusic(const std::string& path) noexcept
+    MusicLoader::~MusicLoader() noexcept
     {
-        _path = std::move(path);
-        _engine->play2D(_path.c_str(), true);
+        if (_music != nullptr)
+        {
+            _music->drop();
+        }
+    }
+
+    bool MusicLoader::LoadMusic(const std::string& path) noexcept
+    {
+        _path = path;
+        _engine->setSoundVolume(.25f);
+        _music = _engine->play2D(_path.c_str(), false, true, true); // Is looped?, start paused?, track song?
+        return _music != nullptr;
+    }
+
+    void MusicLoader::PlayMusic() noexcept
+    {
+        _music->setIsPaused(!_music->getIsPaused());
+    }
+
+    void MusicLoader::StopMusic() noexcept
+    {
+        _music->setPlayPosition(0);
+        _music->setIsPaused(true);
     }
 
     irrklang::ISoundEngine* MusicLoader::_engine = irrklang::createIrrKlangDevice();
+    irrklang::ISound* MusicLoader::_music = nullptr;
     std::string MusicLoader::_path = "";
 }

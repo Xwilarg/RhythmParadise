@@ -11,10 +11,14 @@ namespace rythm
     {
     public:
         MusicLoader() = delete;
-        static void LoadMusic(const std::string& path) noexcept;
+        ~MusicLoader() noexcept;
+        static bool LoadMusic(const std::string& path) noexcept;
+        static void PlayMusic() noexcept;
+        static void StopMusic() noexcept;
 
     private:
         static irrklang::ISoundEngine* _engine;
+        static irrklang::ISound* _music;
         static std::string _path;
     };
 }
