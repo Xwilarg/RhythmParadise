@@ -3,7 +3,6 @@ sfml/2.5.0@bincrafters/stable
 
 [options]
 sfml:graphics=True
-sfml:audio=True
 
 [generators]
 cmake
