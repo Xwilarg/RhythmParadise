@@ -6,11 +6,8 @@ namespace rythm
         : AClickableGameObject(position, size, sf::Color::Green), _callback(std::move(callback))
     { }
 
-    void Button::OnSelect() noexcept
+    void Button::OnClick() noexcept
     {
         _callback();
     }
-
-    void Button::OnUnselect() noexcept
-    { }
 }

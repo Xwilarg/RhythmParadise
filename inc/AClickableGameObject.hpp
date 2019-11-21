@@ -15,8 +15,9 @@ namespace rythm
         void InvokeEvent(const sf::Event& event) noexcept override;
 
     protected:
-        virtual void OnSelect() noexcept = 0;
-        virtual void OnUnselect() noexcept = 0;
+        virtual void OnSelect() noexcept;
+        virtual void OnUnselect() noexcept;
+        virtual void OnClick() noexcept;
 
     private:
         bool _isSelected;

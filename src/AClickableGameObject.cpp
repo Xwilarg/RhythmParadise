@@ -26,6 +26,7 @@ namespace rythm
 					_isSelected = true;
 					OnSelect();
 				}
+				OnClick();
 			}
 			else if (_isSelected)
 			{
@@ -34,4 +35,8 @@ namespace rythm
 			}
 		}
 	}
+
+	void AClickableGameObject::OnSelect() noexcept { }
+	void AClickableGameObject::OnUnselect() noexcept { }
+	void AClickableGameObject::OnClick() noexcept { }
 }
