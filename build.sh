@@ -21,13 +21,11 @@ if [ ! -d "irrKlang" ]; then
         else
             cp irrKlang/bin/winx32-visualStudio/irrKlang.dll ..
         fi
-    elif [ $OSTYPE = 'osx' ]; then
-        cp irrKlang/bin/macosx-gcc/irrKlang.dll ..
     else
         if [ $(uname -m) = 'x86_64' ]; then
-            cp irrKlang/bin/linux-gcc-64/irrKlang.dll ..
+            cp irrKlang/bin/linux-gcc-64/libIrrKlang.so ..
         else
-            cp irrKlang/bin/linux-gcc-32/irrKlang.dll ..
+            cp irrKlang/bin/linux-gcc-32/libIrrKlang.so ..
         fi
     fi
 fi

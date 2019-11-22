@@ -1,6 +1,8 @@
 #pragma once
 
+#ifdef _WIN32
 #pragma comment(lib, "irrKlang.lib")
+#endif
 
 # include <irrKlang.h>
 # include <string>
