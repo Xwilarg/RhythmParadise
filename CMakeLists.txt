@@ -9,16 +9,7 @@ if(MSVC)
 else()
     SET(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++17")
 endif()
-
+file(GLOB_RECURSE SRCS "src/*.cpp")
 include_directories(inc build/irrKlang/include)
-add_executable(${PROJECT_NAME}
-    src/main.cpp
-    src/AClickableGameObject.cpp
-    src/AGameObject.cpp
-    src/Button.cpp
-    src/InputField.cpp
-    src/MusicLoader.cpp
-    src/ResourceLoader.cpp
-    src/Scene.cpp
-    src/SceneLoader.cpp)
+add_executable(${PROJECT_NAME} ${SRCS})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})

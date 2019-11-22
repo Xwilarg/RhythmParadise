@@ -26,7 +26,7 @@ namespace rythm
 					_isSelected = true;
 					OnSelect();
 				}
-				OnClick();
+				OnClick(sf::Vector2i(event.mouseButton.x - posX, event.mouseButton.y - posY));
 			}
 			else if (_isSelected)
 			{
@@ -38,5 +38,5 @@ namespace rythm
 
 	void AClickableGameObject::OnSelect() noexcept { }
 	void AClickableGameObject::OnUnselect() noexcept { }
-	void AClickableGameObject::OnClick() noexcept { }
+	void AClickableGameObject::OnClick(const sf::Vector2i&) noexcept { }
 }

@@ -17,7 +17,8 @@ namespace rythm
     protected:
         virtual void OnSelect() noexcept;
         virtual void OnUnselect() noexcept;
-        virtual void OnClick() noexcept;
+        // pos is the position of the click on the object
+        virtual void OnClick(const sf::Vector2i& pos) noexcept;
 
     private:
         bool _isSelected;

@@ -13,7 +13,7 @@ namespace rythm
 
     protected:
         // Inheriting of AClickableGameObject
-        void OnClick() noexcept override;
+        void OnClick(const sf::Vector2i& pos) noexcept override;
 
     private:
         const std::function<void(void)> _callback;

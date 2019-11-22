@@ -2,6 +2,7 @@
 #include "SceneLoader.hpp"
 #include "InputField.hpp"
 #include "Button.hpp"
+#include "Slider.hpp"
 #include "MusicLoader.hpp"
 
 namespace rythm
@@ -61,6 +62,9 @@ namespace rythm
         inputVolume->SetMaxLength(3);
         inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetVolume, this, std::placeholders::_1));
         game.AddGameObject(std::move(inputVolume));
+        auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f));
+        slider->SetValue(25.f);
+        game.AddGameObject(std::move(slider));
         return game;
     }
 }
