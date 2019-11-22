@@ -23,9 +23,9 @@ if [ ! -d "irrKlang" ]; then
         fi
     else
         if [ $(uname -m) = 'x86_64' ]; then
-            cp irrKlang/bin/linux-gcc-64/libIrrKlang.so ..
+            cp irrKlang/bin/linux-gcc-64/libIrrKlang.so .
         else
-            cp irrKlang/bin/linux-gcc-32/libIrrKlang.so ..
+            cp irrKlang/bin/linux-gcc-32/libIrrKlang.so .
         fi
     fi
 fi
