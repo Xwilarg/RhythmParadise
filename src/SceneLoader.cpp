@@ -3,6 +3,8 @@
 #include "InputField.hpp"
 #include "Button.hpp"
 #include "Slider.hpp"
+#include "Rectangle.hpp"
+#include "KeyButton.hpp"
 #include "MusicLoader.hpp"
 
 namespace rythm
@@ -73,6 +75,7 @@ namespace rythm
         inputVolume->SetInputType(InputField::InputType::Number);
         inputVolume->SetMaxLength(3);
         inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetPositionVolume, this, std::placeholders::_1));
+        inputVolume->Click();
         game.AddGameObject(std::move(inputVolume));
         auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f));
         slider->SetValue(0.f);
@@ -86,15 +89,26 @@ namespace rythm
         game.AddGameObject(CreateVerticalGridLine(1));
         game.AddGameObject(CreateVerticalGridLine(2));
         game.AddGameObject(CreateVerticalGridLine(3));
+        game.AddGameObject(CreateKeyGridLine(0, sf::Keyboard::Key::D, std::bind(&SceneLoader::PressKey, this, 0)));
+        game.AddGameObject(CreateKeyGridLine(1, sf::Keyboard::Key::F, std::bind(&SceneLoader::PressKey, this, 1)));
+        game.AddGameObject(CreateKeyGridLine(2, sf::Keyboard::Key::J, std::bind(&SceneLoader::PressKey, this, 2)));
+        game.AddGameObject(CreateKeyGridLine(3, sf::Keyboard::Key::K, std::bind(&SceneLoader::PressKey, this, 3)));
 
         return game;
     }
 
     std::shared_ptr<AGameObject> SceneLoader::CreateVerticalGridLine(int index) const noexcept
     {
-        auto border = std::make_shared<Button>(sf::Vector2f(400.f + (index * 150.f), 20.f), sf::Vector2f(150.f, 850.f), nullptr);
-        border->SetFillColor(sf::Color::Black);
-        border->SetBorderThickness(1.f);
-        return border;
+        return std::make_shared<Rectangle>(sf::Vector2f(400.f + (index * 150.f), 20.f), sf::Vector2f(150.f, 850.f));
+    }
+
+    std::shared_ptr<AGameObject> SceneLoader::CreateKeyGridLine(int index, sf::Keyboard::Key key, std::function<void(void)>&& callback) const noexcept
+    {
+        return std::make_shared<KeyButton>(sf::Vector2f(400.f + (index * 150.f), 825.f), sf::Vector2f(150.f, 2.f), key, std::move(callback));
+    }
+
+    void SceneLoader::PressKey(int id) const noexcept
+    {
+        (void)id;
     }
 }

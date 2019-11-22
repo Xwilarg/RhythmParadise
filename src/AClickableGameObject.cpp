@@ -36,6 +36,12 @@ namespace rythm
 		}
 	}
 
+	void AClickableGameObject::Click() noexcept
+	{
+		OnSelect();
+		OnClick(sf::Vector2i(0, 0));
+	}
+
 	void AClickableGameObject::OnSelect() noexcept { }
 	void AClickableGameObject::OnUnselect() noexcept { }
 	void AClickableGameObject::OnClick(const sf::Vector2i&) noexcept { }

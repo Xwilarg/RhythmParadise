@@ -22,6 +22,8 @@ namespace rythm
         Scene CreateMenuScene() noexcept;
         Scene CreateGameScene() const noexcept;
         std::shared_ptr<AGameObject> CreateVerticalGridLine(int index) const noexcept;
+        std::shared_ptr<AGameObject> CreateKeyGridLine(int index, sf::Keyboard::Key key, std::function<void(void)>&& callback) const noexcept;
+        void PressKey(int id) const noexcept;
         std::shared_ptr<InputField> _songPath;
         Scene _menuScene;
         Scene _gameScene;

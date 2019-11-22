@@ -10,6 +10,8 @@ namespace rythm
     public:
 		AClickableGameObject(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color) noexcept;
         virtual ~AClickableGameObject() noexcept = default;
+        // Emulate on a click on this object
+        void Click() noexcept;
 
         // Inheriting of GameObject
         void InvokeEvent(const sf::Event& event) noexcept override;
