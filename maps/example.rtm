@@ -1,0 +1,9 @@
+// Example file for RythmHero
+// Files are not supposed to be created by hand, please use the ingame editor
+
+[Beats]
+// line (1 to 4), time in miliseconds before the note reach finish falling
+1,2000
+2,2200
+3,2400
+4,2600
