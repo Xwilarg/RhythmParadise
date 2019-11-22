@@ -17,6 +17,9 @@ namespace rythm
         window.draw(_shape);
     }
 
+    void AGameObject::Update() noexcept
+    { }
+
     const sf::Vector2f& AGameObject::GetSize() const noexcept
     {
         return _shape.getSize();

@@ -21,6 +21,11 @@ namespace rythm
         _currentScene.get().Draw(window);
     }
 
+    void SceneLoader::Update() noexcept
+    {
+        _currentScene.get().Update();
+    }
+
     void SceneLoader::LoadGameScene()
     {
         std::string pathStr = _songPath->GetContent().toAnsiString();
@@ -34,12 +39,17 @@ namespace rythm
         }
     }
 
-    void SceneLoader::SetVolume(const std::string& volumeStr) const noexcept
+    void SceneLoader::SetPositionVolume(const std::string& volumeStr) const noexcept
     {
         float value = volumeStr == "" ? 0.f : std::stoi(volumeStr) / 100.f;
         if (value < 0.f) value = 0.f;
         else if (value > 1.f) value = 1.f;
         MusicLoader::SetMusicVolume(value);
+    }
+
+    void SceneLoader::SetMusicPosition(float pos) const noexcept
+    {
+        MusicLoader::SetMusicPosition(pos);
     }
 
     Scene SceneLoader::CreateMenuScene() noexcept
@@ -60,10 +70,13 @@ namespace rythm
         inputVolume->SetContent("25");
         inputVolume->SetInputType(InputField::InputType::Number);
         inputVolume->SetMaxLength(3);
-        inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetVolume, this, std::placeholders::_1));
+        inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetPositionVolume, this, std::placeholders::_1));
         game.AddGameObject(std::move(inputVolume));
         auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f));
-        slider->SetValue(25.f);
+        slider->SetValue(0.f);
+        slider->SetMaxValue(1.f);
+        slider->SetOnValueChangeCallback(std::bind(&SceneLoader::SetMusicPosition, this, std::placeholders::_1));
+        slider->SetFollowChangeCallback(MusicLoader::GetMusicPosition);
         game.AddGameObject(std::move(slider));
         return game;
     }

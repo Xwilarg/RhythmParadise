@@ -16,6 +16,10 @@ namespace rythm
         static void PlayMusic() noexcept;
         static void StopMusic() noexcept;
         static void SetMusicVolume(float value) noexcept;
+        // value is the position of the music between 0 and 1
+        static void SetMusicPosition(float value) noexcept;
+        // return a value between 0 and 1
+        static float GetMusicPosition() noexcept;
 
     private:
         static irrklang::ISoundEngine* _engine;

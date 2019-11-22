@@ -15,6 +15,7 @@ int main()
             scene.InvokeEvent(event);
         }
         window.clear();
+        scene.Update();
         scene.Draw(window);
         window.display();
     }

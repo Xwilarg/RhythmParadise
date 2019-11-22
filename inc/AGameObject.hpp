@@ -13,6 +13,7 @@ namespace rythm
         virtual ~AGameObject() noexcept = default;
         virtual void InvokeEvent(const sf::Event& event) noexcept;
         virtual void Draw(sf::RenderWindow &window) const noexcept;
+        virtual void Update() noexcept;
 
     protected:
         const sf::Vector2f& GetSize() const noexcept;

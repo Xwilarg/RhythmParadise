@@ -37,6 +37,16 @@ namespace rythm
         _music->setVolume(value);
     }
 
+    void MusicLoader::SetMusicPosition(float value) noexcept
+    {
+        _music->setPlayPosition(static_cast<int>(value * _music->getPlayLength()));
+    }
+
+    float MusicLoader::GetMusicPosition() noexcept
+    {
+        return _music->getPlayPosition() / static_cast<float>(_music->getPlayLength());
+    }
+
     irrklang::ISoundEngine* MusicLoader::_engine = irrklang::createIrrKlangDevice();
     irrklang::ISound* MusicLoader::_music = nullptr;
     std::string MusicLoader::_path = "";

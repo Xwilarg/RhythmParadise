@@ -11,10 +11,14 @@ namespace rythm
         SceneLoader() noexcept;
         void InvokeEvent(const sf::Event& event) noexcept;
         void Draw(sf::RenderWindow &window) const noexcept;
+        void Update() noexcept;
         void LoadGameScene();
 
     private:
-        void SetVolume(const std::string& value) const noexcept;
+        // Callback for with input field
+        void SetPositionVolume(const std::string& value) const noexcept;
+        // Callback with slider
+        void SetMusicPosition(float pos) const noexcept;
         Scene CreateMenuScene() noexcept;
         Scene CreateGameScene() const noexcept;
         std::shared_ptr<InputField> _songPath;
