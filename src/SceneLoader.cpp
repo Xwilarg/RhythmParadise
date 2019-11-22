@@ -58,8 +58,11 @@ namespace rythm
     {
         Scene menu;
         _songPath = std::make_shared<InputField>(sf::Vector2f(10.f, 10.f), sf::Vector2f(1000.f, 30.f), "Song path");
+        _songPath->Click();
         menu.AddGameObject(_songPath);
-        menu.AddGameObject(std::make_shared<Button>(sf::Vector2f(1020.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this)));
+        auto validate = std::make_shared<Button>(sf::Vector2f(1020.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this));
+        validate->SetKeyClick(sf::Keyboard::Return);
+        menu.AddGameObject(validate);
         return menu;
     }
 
@@ -75,7 +78,6 @@ namespace rythm
         inputVolume->SetInputType(InputField::InputType::Number);
         inputVolume->SetMaxLength(3);
         inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetPositionVolume, this, std::placeholders::_1));
-        inputVolume->Click();
         game.AddGameObject(std::move(inputVolume));
         auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f));
         slider->SetValue(0.f);
