@@ -14,12 +14,13 @@ namespace rythm
         virtual void InvokeEvent(const sf::Event& event) noexcept;
         virtual void Draw(sf::RenderWindow &window) const noexcept;
         virtual void Update() noexcept;
+        void SetBorderThickness(float value) noexcept;
+        void SetBorderColor(const sf::Color& color) noexcept;
+        void SetFillColor(const sf::Color& color) noexcept;
 
     protected:
         const sf::Vector2f& GetSize() const noexcept;
         const sf::Vector2f& GetPosition() const noexcept;
-        void SetBorderColor(const sf::Color& color) noexcept;
-        void SetBorderThickness(float value) noexcept;
 
     private:
         sf::RectangleShape _shape;

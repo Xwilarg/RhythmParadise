@@ -1,6 +1,7 @@
 build/
 CMakeFiles/
 *.ogg
+*.mp3
 
 # Visual Studio
 out/

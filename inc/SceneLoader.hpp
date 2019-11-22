@@ -21,6 +21,7 @@ namespace rythm
         void SetMusicPosition(float pos) const noexcept;
         Scene CreateMenuScene() noexcept;
         Scene CreateGameScene() const noexcept;
+        std::shared_ptr<AGameObject> CreateVerticalGridLine(int index) const noexcept;
         std::shared_ptr<InputField> _songPath;
         Scene _menuScene;
         Scene _gameScene;

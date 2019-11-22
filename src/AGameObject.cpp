@@ -20,6 +20,21 @@ namespace rythm
     void AGameObject::Update() noexcept
     { }
 
+    void AGameObject::SetBorderThickness(float value) noexcept
+    {
+        _shape.setOutlineThickness(value);
+    }
+
+    void AGameObject::SetBorderColor(const sf::Color& color) noexcept
+    {
+        _shape.setOutlineColor(color);
+    }
+
+    void AGameObject::SetFillColor(const sf::Color& color) noexcept
+    {
+        _shape.setFillColor(color);
+    }
+
     const sf::Vector2f& AGameObject::GetSize() const noexcept
     {
         return _shape.getSize();
@@ -28,15 +43,5 @@ namespace rythm
     const sf::Vector2f& AGameObject::GetPosition() const noexcept
     {
         return _shape.getPosition();
-    }
-
-    void AGameObject::SetBorderColor(const sf::Color& color) noexcept
-    {
-        _shape.setOutlineColor(color);
-    }
-
-    void AGameObject::SetBorderThickness(float value) noexcept
-    {
-        _shape.setOutlineThickness(value);
     }
 }

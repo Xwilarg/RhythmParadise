@@ -64,6 +64,8 @@ namespace rythm
     Scene SceneLoader::CreateGameScene() const noexcept
     {
         Scene game;
+
+        // Music management
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic));
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic));
         auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume");
@@ -78,6 +80,21 @@ namespace rythm
         slider->SetOnValueChangeCallback(std::bind(&SceneLoader::SetMusicPosition, this, std::placeholders::_1));
         slider->SetFollowChangeCallback(MusicLoader::GetMusicPosition);
         game.AddGameObject(std::move(slider));
+
+        // Game grid
+        game.AddGameObject(CreateVerticalGridLine(0));
+        game.AddGameObject(CreateVerticalGridLine(1));
+        game.AddGameObject(CreateVerticalGridLine(2));
+        game.AddGameObject(CreateVerticalGridLine(3));
+
         return game;
+    }
+
+    std::shared_ptr<AGameObject> SceneLoader::CreateVerticalGridLine(int index) const noexcept
+    {
+        auto border = std::make_shared<Button>(sf::Vector2f(400.f + (index * 150.f), 20.f), sf::Vector2f(150.f, 850.f), nullptr);
+        border->SetFillColor(sf::Color::Black);
+        border->SetBorderThickness(1.f);
+        return border;
     }
 }
