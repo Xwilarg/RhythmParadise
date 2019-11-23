@@ -1,0 +1,15 @@
+name: Linux CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: install conan
+      run:  sudo pip3 install conan && source ~/.profile
+    - name: build
+      run: ./build.sh
