@@ -23,5 +23,7 @@ jobs:
       run:  sudo pip3 install conan && source ~/.profile
     - name: create conan default profile
       run:  conan profile new default --detect
+    - name: set conan g++ version
+      run:  conan profile update settings.compiler.version=8 default
     - name: build
       run: ./build.sh
