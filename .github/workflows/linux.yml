@@ -21,5 +21,7 @@ jobs:
       run:  sudo apt-get install python3-setuptools
     - name: install conan
       run:  sudo pip3 install conan && source ~/.profile
+    - name: create conan default profile
+      run:  conan profile new default --detect
     - name: build
       run: ./build.sh
