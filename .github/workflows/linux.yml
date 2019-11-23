@@ -9,6 +9,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: set apt source
+      run:  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    - name: install g++ 8
+      run:  sudo apt-get install g++-8
     - name: update six
       run:  sudo pip3 install six --upgrade
     - name: install python3-setuptools
