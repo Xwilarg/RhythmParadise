@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: install conan
-      run:  sudo pip3 install conan
+      run:  pip3 install conan
     - name: build
       run: ./build.sh
