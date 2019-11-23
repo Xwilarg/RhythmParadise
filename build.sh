@@ -31,4 +31,4 @@ if [ ! -d "irrKlang" ]; then
 fi
 cmake ..
 cmake --build . --config RELEASE
-cp ../build/bin/RythmHero.exe ..
+cp bin/RythmHero.exe ..
