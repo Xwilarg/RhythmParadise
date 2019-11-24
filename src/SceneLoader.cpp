@@ -1,4 +1,5 @@
 #include <filesystem>
+#include <fstream>
 #include "SceneLoader.hpp"
 #include "InputField.hpp"
 #include "Button.hpp"
@@ -30,13 +31,24 @@ namespace rythm
 
     void SceneLoader::LoadGameScene()
     {
-        std::string pathStr = _songPath->GetContent().toAnsiString();
-        if (!std::filesystem::exists(pathStr) || !MusicLoader::LoadMusic(pathStr))
+        std::filesystem::path path(_songPath->GetContent().toAnsiString()); // Path to the song selected by the player
+        std::filesystem::path finalPath("maps/" + path.stem().string()); // New folder created in the musics/ folder
+        std::string extension(path.extension().string()); // Extension of the music file
+        std::string finalFile(finalPath.string() + "/audio" + extension); // New filename of the audio
+        if (!std::filesystem::exists(path) ||
+            !MusicLoader::LoadMusic(path.string()) ||
+            !std::filesystem::create_directory(finalPath) ||
+            !std::filesystem::copy_file(path, finalFile) ||
+            !MusicLoader::LoadMusic(finalFile))
         {
             _songPath->Clear();
         }
         else
         {
+            std::ofstream map(finalPath / "map.rtm");
+            map << "format=" << extension.substr(1, extension.size()) << "\n\n";
+            map << "[Beats]\n";
+            map.close();
             _currentScene = _gameScene;
         }
     }
