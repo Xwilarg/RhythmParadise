@@ -12,4 +12,4 @@ jobs:
     - name: install conan
       run:  pip3 install conan
     - name: build
-      run: ./build.sh
+      run: ./build.ps1
