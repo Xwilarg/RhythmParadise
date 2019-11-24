@@ -2,9 +2,9 @@
 
 namespace rythm
 {
-    void Scene::AddGameObject(std::shared_ptr<AGameObject> gameObject) noexcept
+    void Scene::AddGameObject(std::shared_ptr<AGameObject>&& gameObject) noexcept
     {
-        _gameObjects.push_back(gameObject);
+        _gameObjects.push_back(std::move(gameObject));
     }
 
     void Scene::InvokeEvent(const sf::Event &event) noexcept

@@ -13,6 +13,7 @@ namespace rythm
 
     void Button::InvokeEvent(const sf::Event& event) noexcept
     {
+        AClickableGameObject::InvokeEvent(event);
         if (event.type == sf::Event::KeyPressed && event.key.code == _key)
         {
             OnClick(sf::Vector2i(0, 0));
