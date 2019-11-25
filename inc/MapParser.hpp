@@ -4,7 +4,7 @@
 # include <filesystem>
 # include "Beat.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class MapParser final
     {
@@ -22,6 +22,6 @@ namespace rythm
         };
         static std::ifstream _file;
         static std::string _audioExtension; // Extension of the music file
-        static std::vector<rythm::Beat> _beats;
+        static std::vector<rhythm::Beat> _beats;
     };
 }

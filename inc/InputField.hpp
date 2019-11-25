@@ -4,7 +4,7 @@
 # include <functional>
 # include "AClickableGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class InputField final : public AClickableGameObject
     {

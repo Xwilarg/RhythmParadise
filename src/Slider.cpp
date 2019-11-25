@@ -1,6 +1,6 @@
 #include "Slider.hpp"
 
-namespace rythm
+namespace rhythm
 {
     Slider::Slider(const sf::Vector2f& position, const sf::Vector2f& size) noexcept
         : AClickableGameObject(position, size, sf::Color::White), _fillShape(size),

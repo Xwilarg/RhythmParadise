@@ -4,7 +4,7 @@
 # include <SFML/Graphics/Text.hpp>
 # include "AClickableGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class Button final : public AClickableGameObject
     {

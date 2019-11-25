@@ -2,7 +2,7 @@
 #include <string>
 #include "MapParser.hpp"
 
-namespace rythm
+namespace rhythm
 {
     bool MapParser::LoadFile(const std::filesystem::path& path) noexcept
     {
@@ -48,7 +48,7 @@ namespace rythm
     Beat MapParser::GetBeatValue(const std::string& line) noexcept
     {
         std::stringstream stream(line);
-        rythm::Beat b;
+        rhythm::Beat b;
         stream >> b.ms >> b.line;
         return b;
     }

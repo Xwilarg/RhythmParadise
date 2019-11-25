@@ -1,6 +1,6 @@
 #include "ResourceLoader.hpp"
 
-namespace rythm
+namespace rhythm
 {
     ResourceLoader::~ResourceLoader()
     {

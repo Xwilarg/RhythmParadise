@@ -2,7 +2,7 @@
 
 # include "AGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class Rectangle final : public AGameObject
     {

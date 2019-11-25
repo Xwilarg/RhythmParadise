@@ -3,7 +3,7 @@
 # include <functional>
 # include "AGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     // KeyButton are buttons that can only be clicked with keyboard
     class KeyButton final : public AGameObject

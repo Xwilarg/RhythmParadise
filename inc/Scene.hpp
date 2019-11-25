@@ -2,7 +2,7 @@
 
 # include "AClickableGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class Scene final
     {

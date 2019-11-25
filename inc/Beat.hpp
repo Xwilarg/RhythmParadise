@@ -1,6 +1,6 @@
 #pragma once
 
-namespace rythm
+namespace rhythm
 {
     struct Beat final
     {

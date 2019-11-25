@@ -1,6 +1,6 @@
 #include "Scene.hpp"
 
-namespace rythm
+namespace rhythm
 {
     void Scene::AddGameObject(std::shared_ptr<AGameObject>&& gameObject) noexcept
     {

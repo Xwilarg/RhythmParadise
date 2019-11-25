@@ -3,7 +3,7 @@
 # include <memory>
 # include "AGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class AClickableGameObject : public AGameObject
     {

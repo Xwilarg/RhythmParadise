@@ -1,6 +1,6 @@
 #include "AClickableGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
 	AClickableGameObject::AClickableGameObject(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color) noexcept
 		: AGameObject(position, size, color), _isSelected(false)

@@ -7,7 +7,7 @@
 # include <irrKlang.h>
 # include <string>
 
-namespace rythm
+namespace rhythm
 {
     class MusicLoader final
     {

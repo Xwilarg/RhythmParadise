@@ -2,8 +2,8 @@
 
 int main()
 {
-    rythm::SceneLoader scene;
-    sf::RenderWindow window(sf::VideoMode(1600, 900), "Rythm Hero");
+    rhythm::SceneLoader scene;
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "rhythm Hero");
 
     while (window.isOpen())
     {

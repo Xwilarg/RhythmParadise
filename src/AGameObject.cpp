@@ -1,6 +1,6 @@
 #include "AGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     AGameObject::AGameObject(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color) noexcept
         : _shape(size)

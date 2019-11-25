@@ -1,6 +1,6 @@
 #include "KeyButton.hpp"
 
-namespace rythm
+namespace rhythm
 {
     KeyButton::KeyButton(const sf::Vector2f& position, const sf::Vector2f& size, sf::Keyboard::Key key, std::function<void(void)>&& callback) noexcept
         : AGameObject(position, size, sf::Color::White), _key(key), _callback(std::move(callback))

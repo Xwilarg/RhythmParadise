@@ -2,7 +2,7 @@
 #include "InputField.hpp"
 #include "ResourceLoader.hpp"
 
-namespace rythm
+namespace rhythm
 {
     InputField::InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept
         : AClickableGameObject(position, size, sf::Color::White), _hintText(hintText, ResourceLoader::LoadFromFile<sf::Font>("fonts/Louis George Cafe.ttf"), static_cast<int>(size.y) - 10),

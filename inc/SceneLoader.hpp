@@ -4,7 +4,7 @@
 # include "Scene.hpp"
 # include "InputField.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class SceneLoader final
     {

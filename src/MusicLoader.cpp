@@ -1,6 +1,6 @@
 #include "MusicLoader.hpp"
 
-namespace rythm
+namespace rhythm
 {
     MusicLoader::~MusicLoader() noexcept
     {

@@ -3,7 +3,7 @@
 # include <unordered_map>
 # include <SFML/Graphics/Font.hpp>
 
-namespace rythm
+namespace rhythm
 {
     class ResourceLoader final
     {

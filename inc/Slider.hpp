@@ -3,7 +3,7 @@
 # include <functional>
 # include "AClickableGameObject.hpp"
 
-namespace rythm
+namespace rhythm
 {
     class Slider final : public AClickableGameObject
     {

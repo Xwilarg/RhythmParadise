@@ -8,7 +8,7 @@
 #include "Button.hpp"
 #include "Slider.hpp"
 
-namespace rythm
+namespace rhythm
 {
     SceneLoader::SceneLoader() noexcept
         : _songPath(nullptr), _menuScene(CreateMenuScene()), _gameScene(CreateGameScene()), _currentScene(_menuScene)
