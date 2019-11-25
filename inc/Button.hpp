@@ -6,7 +6,7 @@
 
 namespace rhythm
 {
-    class Button final : public AClickableGameObject
+    class Button : public AClickableGameObject
     {
     public:
         Button(const sf::Vector2f& position, const sf::Vector2f& size, std::function<void(void)>&& callback) noexcept;
