@@ -1,4 +1,5 @@
 #include <fstream>
+#include "GridSettings.hpp"
 #include "MusicLoader.hpp"
 #include "SceneLoader.hpp"
 #include "InputField.hpp"
@@ -10,6 +11,8 @@
 
 namespace rhythm
 {
+    using gs = GridSettings;
+
     SceneLoader::SceneLoader() noexcept
         : _songPath(nullptr), _menuScene(CreateMenuScene()), _gameScene(CreateGameScene()), _currentScene(_menuScene)
     { }
@@ -144,12 +147,12 @@ namespace rhythm
 
     std::shared_ptr<AGameObject> SceneLoader::CreateVerticalGridLine(int index) const noexcept
     {
-        return std::make_shared<Rectangle>(sf::Vector2f(400.f + (index * 150.f), 20.f), sf::Vector2f(150.f, 850.f));
+        return std::make_shared<Rectangle>(sf::Vector2f(gs::xPos + (index * gs::xSpacing), gs::yPos), sf::Vector2f(gs::xSpacing, gs::height));
     }
 
     std::shared_ptr<AGameObject> SceneLoader::CreateKeyGridLine(int index, sf::Keyboard::Key key, std::function<void(void)>&& callback) const noexcept
     {
-        return std::make_shared<KeyButton>(sf::Vector2f(400.f + (index * 150.f), 825.f), sf::Vector2f(150.f, 2.f), key, std::move(callback));
+        return std::make_shared<KeyButton>(sf::Vector2f(gs::xPos + (index * gs::xSpacing), gs::yNoteReceiver), sf::Vector2f(gs::xSpacing, gs::heightNoteReceiver), key, std::move(callback));
     }
 
     void SceneLoader::PressKey(int id) const noexcept
