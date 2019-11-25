@@ -35,6 +35,11 @@ namespace rhythm
         return _audioExtension;
     }
 
+    const std::vector<rhythm::Beat> MapParser::GetAllBeats() noexcept
+    {
+        return _beats;
+    }
+
     std::string MapParser::GetFieldValue(const std::string& line) noexcept
     {
         size_t pos;
@@ -49,7 +54,7 @@ namespace rhythm
     {
         std::stringstream stream(line);
         rhythm::Beat b;
-        stream >> b.ms >> b.line;
+        stream >> b.line >> b.ms;
         return b;
     }
 

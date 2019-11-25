@@ -11,6 +11,7 @@ namespace rhythm
     public:
         static bool LoadFile(const std::filesystem::path& path) noexcept;
         static const std::string& GetAudioExtension() noexcept;
+        static const std::vector<rhythm::Beat> GetAllBeats() noexcept;
 
     private:
         static std::string GetFieldValue(const std::string& line) noexcept;

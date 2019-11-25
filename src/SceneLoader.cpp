@@ -6,6 +6,7 @@
 #include "Rectangle.hpp"
 #include "KeyButton.hpp"
 #include "MapParser.hpp"
+#include "MusicNote.hpp"
 #include "Button.hpp"
 #include "Slider.hpp"
 
@@ -39,6 +40,13 @@ namespace rhythm
         { }
         else
         {
+            for (const auto& beat : MapParser::GetAllBeats())
+            {
+                _gameScene.AddGameObject(std::make_shared<MusicNote>(sf::Vector2f(
+                    gs::xPos + ((beat.line - 1) * gs::xSpacing),
+                    gs::yNoteReceiver - beat.ms
+                ), nullptr));
+            }
             _currentScene = _gameScene;
         }
     }

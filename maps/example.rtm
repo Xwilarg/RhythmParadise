@@ -5,7 +5,7 @@ format=ogg
 
 [Beats]
 // line (1 to 4), time in miliseconds before the note reach finish falling
-1,2000
-2,2200
-3,2400
-4,2600
+1 2000
+2 2200
+3 2400
+4 2600
