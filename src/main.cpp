@@ -3,7 +3,7 @@
 int main()
 {
     rhythm::SceneLoader scene;
-    sf::RenderWindow window(sf::VideoMode(1600, 900), "rhythm Hero");
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "Rhythm Paradise");
 
     while (window.isOpen())
     {
