@@ -1,4 +1,4 @@
-# RythmHero
+# Rhythm Paradise
 The goal of this project is to create a small and simple rythm game
 
 | Linux          | Windows     |

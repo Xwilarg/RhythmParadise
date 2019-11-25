@@ -31,5 +31,5 @@ if (-Not (Test-Path "irrKlang"))
 }
 cmake ..
 cmake --build . --config RELEASE
-cp bin/RythmHero.exe ..
+cp bin/RhythmParadise.exe ..
 cd ..
