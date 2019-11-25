@@ -1,12 +1,12 @@
-#include <filesystem>
 #include <fstream>
+#include "MusicLoader.hpp"
 #include "SceneLoader.hpp"
 #include "InputField.hpp"
-#include "Button.hpp"
-#include "Slider.hpp"
 #include "Rectangle.hpp"
 #include "KeyButton.hpp"
-#include "MusicLoader.hpp"
+#include "MapParser.hpp"
+#include "Button.hpp"
+#include "Slider.hpp"
 
 namespace rythm
 {
@@ -29,7 +29,18 @@ namespace rythm
         _currentScene.get().Update();
     }
 
-    void SceneLoader::LoadGameScene()
+    void SceneLoader::LoadGameSceneFromMusic(const std::filesystem::path& parentDirectory) // Load the game from a previously created map
+    {
+        if (!MapParser::LoadFile(parentDirectory / "map.rtm") ||
+            !MusicLoader::LoadMusic(parentDirectory.string() + "/audio." + MapParser::GetAudioExtension()))
+        { }
+        else
+        {
+            _currentScene = _gameScene;
+        }
+    }
+
+    void SceneLoader::LoadGameScene() // Load the game from a music name
     {
         std::filesystem::path path(_songPath->GetContent().toAnsiString()); // Path to the song selected by the player
         std::filesystem::path finalPath("maps/" + path.stem().string()); // New folder created in the musics/ folder
@@ -68,13 +79,28 @@ namespace rythm
 
     Scene SceneLoader::CreateMenuScene() noexcept
     {
+        if (!std::filesystem::exists("maps"))
+            std::filesystem::create_directory("maps");
+
         Scene menu;
         _songPath = std::make_shared<InputField>(sf::Vector2f(10.f, 10.f), sf::Vector2f(1000.f, 30.f), "Song path");
         _songPath->Click();
         menu.AddGameObject(_songPath);
         auto validate = std::make_shared<Button>(sf::Vector2f(1020.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this));
-        validate->SetKeyClick(sf::Keyboard::Return);
-        menu.AddGameObject(validate);
+        validate->SetKeyClick(sf::Keyboard::Return);menu.AddGameObject(validate);
+        int index = 0;
+        for (const auto& directory : std::filesystem::directory_iterator("maps")) // Gettings maps from maps/ folder
+        {
+            if (!std::filesystem::is_directory(directory)) // We ignore files
+                continue;
+            auto songSelection = std::make_shared<Button>(sf::Vector2f(10.f, 80.f + (50.f * index)), sf::Vector2f(500.f, 30.f), std::bind(&SceneLoader::LoadGameSceneFromMusic, this, directory));
+            songSelection->SetFillColor(sf::Color::Black);
+            songSelection->SetBorderThickness(1.f);
+            songSelection->SetBorderColor(sf::Color::White);
+            songSelection->SetText(directory.path().filename().string());
+            menu.AddGameObject(songSelection);
+            index++;
+        }
         return menu;
     }
 

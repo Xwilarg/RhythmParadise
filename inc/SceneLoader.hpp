@@ -1,5 +1,6 @@
 #pragma once
 
+# include <filesystem>
 # include "Scene.hpp"
 # include "InputField.hpp"
 
@@ -12,9 +13,10 @@ namespace rythm
         void InvokeEvent(const sf::Event& event) noexcept;
         void Draw(sf::RenderWindow &window) const noexcept;
         void Update() noexcept;
-        void LoadGameScene();
 
     private:
+        void LoadGameSceneFromMusic(const std::filesystem::path& parentDirectory);
+        void LoadGameScene();
         // Callback for with input field
         void SetPositionVolume(const std::string& value) const noexcept;
         // Callback with slider
