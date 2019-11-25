@@ -111,13 +111,18 @@ namespace rythm
         // Music management
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic));
         game.AddGameObject(std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic));
-        auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume");
+        auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume"); // InputField for volume (between 0 and 1)
         inputVolume->SetContent("25");
         inputVolume->SetInputType(InputField::InputType::Number);
         inputVolume->SetMaxLength(3);
         inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetPositionVolume, this, std::placeholders::_1));
         game.AddGameObject(std::move(inputVolume));
-        auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f));
+        auto speedMultiplicator = std::make_shared<InputField>(sf::Vector2f(240.f, 20.f), sf::Vector2f(45.f, 30.f), "Spd"); // InputField for music speed multiplicator
+        speedMultiplicator->SetContent("1");
+        speedMultiplicator->SetInputType(InputField::InputType::Number);
+        speedMultiplicator->SetMaxLength(3);
+        game.AddGameObject(std::move(speedMultiplicator));
+        auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f)); // Slider for music progression
         slider->SetValue(0.f);
         slider->SetMaxValue(1.f);
         slider->SetOnValueChangeCallback(std::bind(&SceneLoader::SetMusicPosition, this, std::placeholders::_1));
