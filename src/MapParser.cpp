@@ -11,19 +11,19 @@ namespace rhythm
         if (!file.is_open())
             return false;
         std::string line;
-        ParsingType _type = ParsingType::Field;
+        ParsingType _type = ParsingType::FIELD;
         while (std::getline(file, line))
         {
             if (line.rfind("[Beats]", 0) == 0) { // Begin information about beats
-                _type = ParsingType::Beat;
+                _type = ParsingType::BEAT;
             }
-            else if (_type == ParsingType::Field)
+            else if (_type == ParsingType::FIELD)
             {
                 if (line.rfind("format=", 0) == 0) { // Information about the audio format
                     _audioExtension = GetFieldValue(line);
                 }
             }
-            else if (_type == ParsingType::Beat)
+            else if (_type == ParsingType::BEAT)
             {
                 _beats.push_back(GetBeatValue(line));
             }
@@ -37,7 +37,7 @@ namespace rhythm
         return _audioExtension;
     }
 
-    const std::vector<rhythm::Beat> MapParser::GetAllBeats() noexcept
+    const std::vector<Beat> MapParser::GetAllBeats() noexcept
     {
         return _beats;
     }
@@ -55,7 +55,7 @@ namespace rhythm
     Beat MapParser::GetBeatValue(const std::string& line) noexcept
     {
         std::stringstream stream(line);
-        rhythm::Beat b;
+        Beat b;
         stream >> b.line >> b.ms;
         return b;
     }

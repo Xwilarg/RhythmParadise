@@ -143,13 +143,13 @@ namespace rhythm
         game.AddGameObject(std::move(stop));
         auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume"); // InputField for volume (between 0 and 1)
         inputVolume->SetContent("25");
-        inputVolume->SetInputType(InputField::InputType::Number);
+        inputVolume->SetInputType(InputField::InputType::NUMBER);
         inputVolume->SetMaxLength(3);
         inputVolume->SetOnValueChangeCallback(std::bind(&SceneLoader::SetPositionVolume, this, std::placeholders::_1));
         game.AddGameObject(std::move(inputVolume));
         auto speedMultiplicator = std::make_shared<InputField>(sf::Vector2f(240.f, 20.f), sf::Vector2f(45.f, 30.f), "Spd"); // InputField for music speed multiplicator
         speedMultiplicator->SetContent("1");
-        speedMultiplicator->SetInputType(InputField::InputType::Number);
+        speedMultiplicator->SetInputType(InputField::InputType::NUMBER);
         speedMultiplicator->SetMaxLength(3);
         game.AddGameObject(std::move(speedMultiplicator));
         auto slider = std::make_shared<Slider>(sf::Vector2f(20.f, 70.f), sf::Vector2f(100.f, 30.f)); // Slider for music progression

@@ -11,8 +11,8 @@ namespace rhythm
     public:
         enum InputType
         {
-            Any,
-            Number
+            ANY,
+            NUMBER
         };
         InputField(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& hintText) noexcept;
         void Clear() noexcept;
