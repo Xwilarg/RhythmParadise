@@ -15,7 +15,7 @@ namespace rhythm
     using gs = GridSettings;
 
     SceneLoader::SceneLoader() noexcept
-        : _songPath(nullptr), _menuScene(CreateMenuScene()), _gameScene(CreateGameScene()), _currentScene(_menuScene)
+        : _songPath(nullptr), _menuScene(CreateMenuScene()), _gameScene(CreateGameScene()), _currentScene(_menuScene), _currentSongDir()
     { }
 
     void SceneLoader::InvokeEvent(const sf::Event& event) noexcept
@@ -33,25 +33,31 @@ namespace rhythm
         _currentScene.get().Update();
     }
 
-    void SceneLoader::LoadGameSceneFromMusic(const std::filesystem::path& parentDirectory) // Load the game from a previously created map
+    void SceneLoader::LoadBeats() noexcept
+    {
+        for (const auto& beat : MapParser::GetAllBeats())
+        {
+            _gameScene.AddGameObject(std::make_shared<MusicNote>(sf::Vector2f(
+                gs::xPos + ((beat.line - 1) * gs::xSpacing),
+                gs::yNoteReceiver - beat.ms
+            ), nullptr));
+        }
+    }
+
+    void SceneLoader::LoadGameSceneFromMusic(const std::filesystem::path& parentDirectory) noexcept // Load the game from a previously created map
     {
         if (!MapParser::LoadFile(parentDirectory / "map.rtm") ||
             !MusicLoader::LoadMusic(parentDirectory.string() + "/audio." + MapParser::GetAudioExtension()))
         { }
         else
         {
-            for (const auto& beat : MapParser::GetAllBeats())
-            {
-                _gameScene.AddGameObject(std::make_shared<MusicNote>(sf::Vector2f(
-                    gs::xPos + ((beat.line - 1) * gs::xSpacing),
-                    gs::yNoteReceiver - beat.ms
-                ), nullptr));
-            }
+            LoadBeats();
+            _currentSongDir = parentDirectory;
             _currentScene = _gameScene;
         }
     }
 
-    void SceneLoader::LoadGameScene() // Load the game from a music name
+    void SceneLoader::LoadGameScene() noexcept // Load the game from a music name
     {
         std::filesystem::path path(_songPath->GetContent().toAnsiString()); // Path to the song selected by the player
         std::filesystem::path finalPath("maps/" + path.stem().string()); // New folder created in the musics/ folder
@@ -71,8 +77,16 @@ namespace rhythm
             map << "format=" << extension.substr(1, extension.size()) << "\n\n";
             map << "[Beats]\n";
             map.close();
+            _currentSongDir = finalPath;
             _currentScene = _gameScene;
         }
+    }
+
+    void SceneLoader::ResetGameScene() noexcept
+    {
+        _gameScene = CreateGameScene();
+        MapParser::LoadFile(_currentSongDir / "map.rtm");
+        LoadBeats();
     }
 
     void SceneLoader::SetPositionVolume(const std::string& volumeStr) const noexcept
@@ -116,7 +130,7 @@ namespace rhythm
         return menu;
     }
 
-    Scene SceneLoader::CreateGameScene() const noexcept
+    Scene SceneLoader::CreateGameScene() noexcept
     {
         Scene game;
 
@@ -144,6 +158,9 @@ namespace rhythm
         slider->SetOnValueChangeCallback(std::bind(&SceneLoader::SetMusicPosition, this, std::placeholders::_1));
         slider->SetFollowChangeCallback(MusicLoader::GetMusicPosition);
         game.AddGameObject(std::move(slider));
+        auto reset = std::make_shared<Button>(sf::Vector2f(20.f, 120.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::ResetGameScene, this));
+        reset->SetKeyClick(sf::Keyboard::R);
+        game.AddGameObject(std::move(reset));
 
         // Game grid
         game.AddGameObject(CreateVerticalGridLine(0));

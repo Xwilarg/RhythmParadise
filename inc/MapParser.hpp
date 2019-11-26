@@ -21,7 +21,6 @@ namespace rhythm
             Field,
             Beat
         };
-        static std::ifstream _file;
         static std::string _audioExtension; // Extension of the music file
         static std::vector<rhythm::Beat> _beats;
     };

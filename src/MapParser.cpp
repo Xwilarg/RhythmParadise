@@ -6,12 +6,13 @@ namespace rhythm
 {
     bool MapParser::LoadFile(const std::filesystem::path& path) noexcept
     {
-        _file.open(path);
-        if (!_file.is_open())
+        _beats.clear();
+        std::ifstream file(path);
+        if (!file.is_open())
             return false;
         std::string line;
         ParsingType _type = ParsingType::Field;
-        while (std::getline(_file, line))
+        while (std::getline(file, line))
         {
             if (line.rfind("[Beats]", 0) == 0) { // Begin information about beats
                 _type = ParsingType::Beat;
@@ -27,6 +28,7 @@ namespace rhythm
                 _beats.push_back(GetBeatValue(line));
             }
         }
+        file.close();
         return true;
     }
 
@@ -58,7 +60,6 @@ namespace rhythm
         return b;
     }
 
-    std::ifstream MapParser::_file;
     std::string MapParser::_audioExtension;
     std::vector<Beat> MapParser::_beats;
 }
