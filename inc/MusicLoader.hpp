@@ -22,6 +22,8 @@ namespace rhythm
         static void SetMusicPosition(float value) noexcept;
         // return a value between 0 and 1
         static float GetMusicPosition() noexcept;
+        // return the number of ms elapsed
+        static int GetMusicPositionIsMs() noexcept;
 
     private:
         static irrklang::ISoundEngine* _engine;

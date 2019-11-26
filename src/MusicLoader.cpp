@@ -47,6 +47,11 @@ namespace rhythm
         return _music->getPlayPosition() / static_cast<float>(_music->getPlayLength());
     }
 
+    int MusicLoader::GetMusicPositionIsMs() noexcept
+    {
+        return _music->getPlayPosition();
+    }
+
     irrklang::ISoundEngine* MusicLoader::_engine = irrklang::createIrrKlangDevice();
     irrklang::ISound* MusicLoader::_music = nullptr;
     std::string MusicLoader::_path = "";

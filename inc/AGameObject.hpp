@@ -19,6 +19,7 @@ namespace rhythm
         void SetFillColor(const sf::Color& color) noexcept;
 
     protected:
+        void SetPosition(const sf::Vector2f& pos) noexcept;
         const sf::Vector2f& GetSize() const noexcept;
         const sf::Vector2f& GetPosition() const noexcept;
 

@@ -98,7 +98,8 @@ namespace rhythm
         _songPath->Click();
         menu.AddGameObject(_songPath);
         auto validate = std::make_shared<Button>(sf::Vector2f(1020.f, 10.f), sf::Vector2f(30.f, 30.f), std::bind(&SceneLoader::LoadGameScene, this));
-        validate->SetKeyClick(sf::Keyboard::Return);menu.AddGameObject(validate);
+        validate->SetKeyClick(sf::Keyboard::Return);
+        menu.AddGameObject(std::move(validate));
         int index = 0;
         for (const auto& directory : std::filesystem::directory_iterator("maps")) // Gettings maps from maps/ folder
         {
@@ -120,8 +121,12 @@ namespace rhythm
         Scene game;
 
         // Music management
-        game.AddGameObject(std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic));
-        game.AddGameObject(std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic));
+        auto play = std::make_shared<Button>(sf::Vector2f(20.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::PlayMusic);
+        play->SetKeyClick(sf::Keyboard::Space);
+        game.AddGameObject(std::move(play));
+        auto stop = std::make_shared<Button>(sf::Vector2f(70.f, 20.f), sf::Vector2f(30.f, 30.f), MusicLoader::StopMusic);
+        stop->SetKeyClick(sf::Keyboard::Escape);
+        game.AddGameObject(std::move(stop));
         auto inputVolume = std::make_shared<InputField>(sf::Vector2f(120.f, 20.f), sf::Vector2f(100.f, 30.f), "Volume"); // InputField for volume (between 0 and 1)
         inputVolume->SetContent("25");
         inputVolume->SetInputType(InputField::InputType::Number);

@@ -35,6 +35,11 @@ namespace rhythm
         _shape.setFillColor(color);
     }
 
+    void AGameObject::SetPosition(const sf::Vector2f& pos) noexcept
+    {
+        _shape.setPosition(pos);
+    }
+
     const sf::Vector2f& AGameObject::GetSize() const noexcept
     {
         return _shape.getSize();
